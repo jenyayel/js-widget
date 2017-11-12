@@ -11,7 +11,8 @@ function app(window) {
 
     // all methods that were called till now and stored in queue
     // needs to be called now 
-    let queue = window[window['JS-Widget']].q;
+    let globalObject = window[window['JS-Widget']];
+    let queue = globalObject.q;
     if (queue && queue.length > 0) {
         for (var i = 0; i < queue.length; i++) {
             apiHandler(queue[i][0], queue[i][1]);
@@ -24,7 +25,7 @@ function app(window) {
     
     // override temporary (until the app loaded) handler
     // for widget's API calls
-    window[window['JS-Widget']] = apiHandler;
+    globalObject = apiHandler;
 
     console.log('JS-Widget started', configurations);
 }

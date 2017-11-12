@@ -1,3 +1,12 @@
 {
-  "name": "js-widget"
+  "name": "js-widget",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --config webpack.config.js",
+    "start": "./node_modules/.bin/webpack-dev-server --open"
+  },
+  "devDependencies": {
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4",
+    "copy-webpack-plugin": "^4.2.0"
+  }
 }

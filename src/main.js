@@ -1,7 +1,7 @@
 import { ping } from './services'
 
-app();
-
 function app() {
-
+    console.log('JS-Widget starting');
 }
+
+app();

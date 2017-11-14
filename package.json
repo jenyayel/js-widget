@@ -2,6 +2,7 @@
   "name": "js-widget",
   "scripts": {
     "build": "./node_modules/.bin/webpack --config webpack.config.js",
+    "build-release": "./node_modules/.bin/webpack --config webpack.config.js --env.prod",
     "start": "./node_modules/.bin/webpack-dev-server --open"
   },
   "devDependencies": {

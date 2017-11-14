@@ -4,6 +4,8 @@ var copyWebpackPlugin = require('copy-webpack-plugin');
 const bundleOutputDir = './dist';
 
 module.exports = (env) => {
+    const isDevBuild = !(env && env.prod);
+    
     return [{
         entry: './src/main.js',
         output: {
@@ -13,6 +15,8 @@ module.exports = (env) => {
         devServer: {
             contentBase: bundleOutputDir
         },
-        plugins: [new webpack.SourceMapDevToolPlugin(), new copyWebpackPlugin([{ from: 'demo/' }])]
+        plugins: isDevBuild
+            ? [new webpack.SourceMapDevToolPlugin(), new copyWebpackPlugin([{ from: 'demo/' }])]
+            : [new webpack.optimize.UglifyJsPlugin()]
     }];
 };

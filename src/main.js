@@ -1,6 +1,5 @@
 import { ping } from './services'
 
-let configurations;
 const supportedAPI = ['init']; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
 
 /**
@@ -9,23 +8,28 @@ const supportedAPI = ['init']; // enlist all methods supported by API (e.g. `mw(
 function app(window) {
     console.log('JS-Widget starting');
 
+    // set default configurations
+    let configurations = {
+        someDefaultConfiguration: false
+    };
+
     // all methods that were called till now and stored in queue
     // needs to be called now 
     let globalObject = window[window['JS-Widget']];
     let queue = globalObject.q;
-    if (queue && queue.length > 0) {
+    if (queue) {
         for (var i = 0; i < queue.length; i++) {
-            apiHandler(queue[i][0], queue[i][1]);
+            if (queue[i][0].toLowerCase() == 'init')
+                configurations = extendObject(configurations, queue[i][1]);
+            else
+                apiHandler(queue[i][0], queue[i][1]);
         }
     }
-    else {
-        // client didn't call init, let's do it by our self
-        apiHandler('init');
-    }
-    
+
     // override temporary (until the app loaded) handler
     // for widget's API calls
     globalObject = apiHandler;
+    globalObject.configurations = configurations;
 
     console.log('JS-Widget started', configurations);
 }
@@ -42,11 +46,7 @@ function apiHandler(api, params) {
     console.log(`Handling API call ${api}`, params);
 
     switch (api) {
-        case 'init':
-            configurations = extendObject({
-                someDefaultConfiguration: false
-            }, params);
-            break;
+        // TODO: add API implementation
         default:
             console.warn(`No handler defined for ${api}`);
     }

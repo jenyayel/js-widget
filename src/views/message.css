@@ -1,0 +1,21 @@
+.js-widget-overlay{
+    z-index: 10001; 
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: 0.8;
+    background-color: #000;
+}
+.js-widget-dialog{
+    position: fixed;
+    z-index: 10002;
+    background: #fff;
+    left: 50%;
+    top: 30%;
+    margin: 0 0 0 -120px;
+    width: 200px;
+    padding: 10px 20px;
+    border: solid 1px #333
+}

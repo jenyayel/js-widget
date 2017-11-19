@@ -1,6 +1,7 @@
 import { ping } from './services'
+import { show } from './views/message'
 
-const supportedAPI = ['init']; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
+const supportedAPI = ['init', 'message']; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
 
 /**
     The main entry of the application
@@ -19,8 +20,10 @@ function app(window) {
     let queue = globalObject.q;
     if (queue) {
         for (var i = 0; i < queue.length; i++) {
-            if (queue[i][0].toLowerCase() == 'init')
+            if (queue[i][0].toLowerCase() == 'init') {
                 configurations = extendObject(configurations, queue[i][1]);
+                console.log('JS-Widget started', configurations);
+            }
             else
                 apiHandler(queue[i][0], queue[i][1]);
         }
@@ -30,8 +33,6 @@ function app(window) {
     // for widget's API calls
     globalObject = apiHandler;
     globalObject.configurations = configurations;
-
-    console.log('JS-Widget started', configurations);
 }
 
 /**
@@ -47,6 +48,9 @@ function apiHandler(api, params) {
 
     switch (api) {
         // TODO: add API implementation
+        case 'message':
+            show(params);
+            break;
         default:
             console.warn(`No handler defined for ${api}`);
     }

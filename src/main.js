@@ -33,6 +33,7 @@ function app(window) {
     // for widget's API calls
     globalObject = apiHandler;
     globalObject.configurations = configurations;
+    window[window['JS-Widget']] = globalObject;
 }
 
 /**

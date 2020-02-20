@@ -1,21 +1,171 @@
-.js-widget-overlay{
-    z-index: 10001; 
-    position: fixed;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    opacity: 0.8;
-    background-color: #000;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* CONTENT */
+
+
 .js-widget-dialog{
-    position: fixed;
+    /* position: fixed; */
     z-index: 10002;
-    background: #fff;
-    left: 50%;
-    top: 30%;
-    margin: 0 0 0 -120px;
-    width: 200px;
-    padding: 10px 20px;
-    border: solid 1px #333
+    /* background: #fff; */
+    /* left: 50%; */
+    /* top: 30%; */
+    /* margin: 0 0 0 -120px; */
+    /* width: 200px; */
+    /* padding: 10px 20px; */
+    /* border: solid 1px #333 */
+}
+
+.modal-container {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+	user-select: none;
+}
+
+.overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(40, 185, 5, 0.5);
+}
+
+.logo {
+	width: 150px;
+	align-self: center;
+	margin: 26px 0;
+}
+
+.modal {
+	position: fixed;
+	width: 85%;
+	min-height: 85%;
+	font-family: 'Didact Gothic', sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: #000000;
+	border-radius: 20px;
+	background: #ffffff;
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+	padding: 0 1em;
+}
+
+.modal .modal-copy {
+	display: flex;
+	flex-direction: column;
+}
+
+.modal-copy h1 {
+	font-size: 26px;
+	line-height: 34px;
+}
+
+.modal-copy p {
+	font-size: 17px;
+	line-height: 22px;
+	margin: 10px 0 26px 0;
+}
+
+.modal-copy .learn-more,
+.modal-copy .close {
+	width: -webkit-fill-available;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 18px;
+	line-height: 24px;
+	letter-spacing: 0.05em;
+}
+
+.modal-copy .learn-more {
+	background: #28B905;
+	color: #ffffff;
+	padding: 10px 25px;
+}
+
+.modal-copy .close {
+	background: #ffffff;
+	border: none;
+	padding: 20px 25px;
+}
+
+@media screen and (min-width: 1024px) {
+	.logo {
+		width: 320px;
+		margin: 0 3em 0 0;
+	}
+
+	.modal {
+		width: unset;
+		min-height: unset;
+		flex-direction: row;
+		padding: 3em;
+	}
+
+	.modal-copy {
+		justify-content: center;
+	}
+
+	.modal-copy h1 {
+		font-size: 47px;
+		line-height: 62px;
+	}
+
+	.modal-copy p {
+		font-size: 26px;
+		line-height: 34px;
+		margin: 10px 0 3.5em 0;
+	}
 }
